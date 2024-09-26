@@ -1,11 +1,11 @@
-import { actionType } from '../../App';
 import { Question as QuestionType } from '../../common/types';
+import { actionType } from '../../reducers/quizReducer';
 import QuestionOptions from './QuestionOptions';
 
 type Props = {
   question: QuestionType;
   dispatch: React.Dispatch<actionType>;
-  answer: number;
+  answer: number | null;
 };
 
 const Question = ({ question, answer, dispatch }: Props) => {

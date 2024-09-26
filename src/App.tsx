@@ -1,6 +1,5 @@
 import { useEffect, useReducer } from 'react';
-import './App.css';
-import Header from './components/Header';
+
 import Main from './components/Main';
 import Loader from './components/Loader';
 import Error from './components/Error';
@@ -12,11 +11,7 @@ import Progress from './components/Progress';
 import FinishScreen from './components/FinishScreen';
 import Footer from './components/Footer';
 import Timer from './components/Timer';
-
-export type actionType = {
-  type?: string;
-  payload?: [] | number;
-};
+import { QuizReducer } from './reducers/quizReducer';
 
 const initialState: InitialStateType = {
   questions: [],
@@ -25,77 +20,14 @@ const initialState: InitialStateType = {
   answer: null,
   points: 0,
   highscore: 0,
-  secondsRemaining: null,
+  secondsRemaining: 0,
 };
-
-function reducer(
-  state: InitialStateType,
-  action: actionType,
-): InitialStateType {
-  switch (action.type) {
-    case 'dataReceived':
-      return {
-        ...state,
-        questions: action.payload,
-        status: 'ready',
-      };
-    case 'dataFailed':
-      return {
-        ...state,
-        status: 'error',
-      };
-    case 'start':
-      return {
-        ...state,
-        status: 'active',
-        secondsRemaining: state.questions.length * 30,
-      };
-
-    case 'newAnswer':
-      const question = state.questions.at(state.index);
-
-      return {
-        ...state,
-        answer: action.payload,
-        points:
-          action.payload === question.correctOption
-            ? state.points + question.points
-            : state.points,
-      };
-    case 'nextQuestion':
-      return { ...state, index: state.index + 1, answer: null };
-    case 'finish':
-      return {
-        ...state,
-        status: 'finish',
-        highscore:
-          state.points > state.highscore ? state.points : state.highscore,
-      };
-    case 'restart':
-      return {
-        ...initialState,
-        highscore: state.highscore,
-        questions: state.questions,
-        status: 'ready',
-      };
-
-    case 'tick':
-      return {
-        ...state,
-        secondsRemaining: state.secondsRemaining - 1,
-        status: state.secondsRemaining === 0 ? 'finish' : state.status,
-      };
-
-    default:
-      throw new Error('Action unknown');
-  }
-}
 
 function App() {
   const [
     { questions, status, answer, index, points, highscore, secondsRemaining },
     dispatch,
-  ] = useReducer(reducer, initialState);
+  ] = useReducer(QuizReducer, initialState);
 
   const questionsNum = questions.length;
   const maxPoints = questions.reduce((prev, cur) => prev + cur.points, 0);
@@ -109,8 +41,6 @@ function App() {
 
   return (
     <div className="app">
-      <Header />
-
       <Main>
         {status === 'loading' && <Loader />}
         {status === 'error' && <Error />}

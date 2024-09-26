@@ -12,5 +12,5 @@ export type InitialStateType = {
   answer: null | number;
   points: number;
   highscore: number;
-  secondsRemaining: null | number;
+  secondsRemaining: number;
 };
