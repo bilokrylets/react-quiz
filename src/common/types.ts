@@ -14,3 +14,8 @@ export type InitialStateType = {
   highscore: number;
   secondsRemaining: number;
 };
+
+export type actionType = {
+  type?: string;
+  payload?: [] | number;
+};

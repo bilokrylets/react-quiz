@@ -1,8 +1,10 @@
-import { actionType } from '../App';
+import { UnknownAction } from '@reduxjs/toolkit';
+import { Dispatch } from 'react';
+import { start } from '../redux/quizSlice';
 
 type Props = {
   questionsNumber: number;
-  dispatch: React.Dispatch<actionType>;
+  dispatch: Dispatch<UnknownAction>;
 };
 
 const StartScreen = ({ questionsNumber, dispatch }: Props) => {
@@ -10,10 +12,7 @@ const StartScreen = ({ questionsNumber, dispatch }: Props) => {
     <div className="start">
       <h2>Welcome to the React Quiz!</h2>
       <h3>{questionsNumber} questions to test your react mastery</h3>
-      <button
-        className="btn btn-ui"
-        onClick={() => dispatch({ type: 'start' })}
-      >
+      <button className="btn btn-ui" onClick={() => dispatch(start())}>
         Let's start
       </button>
     </div>

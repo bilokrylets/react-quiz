@@ -1,9 +1,11 @@
+import { UnknownAction } from '@reduxjs/toolkit';
+import { Dispatch } from 'react';
 import { Question } from '../../common/types';
-import { actionType } from '../../reducers/quizReducer';
+import { newAnswer } from '../../redux/quizSlice';
 
 type Props = {
   question: Question;
-  dispatch: React.Dispatch<actionType>;
+  dispatch: Dispatch<UnknownAction>;
   answer: number | null;
 };
 
@@ -22,7 +24,7 @@ const QuestionOptions = ({ question, answer, dispatch }: Props) => {
           }`}
           key={option}
           disabled={hasAnswered}
-          onClick={() => dispatch({ type: 'newAnswer', payload: index })}
+          onClick={() => dispatch(newAnswer(index))}
         >
           {option}
         </button>

@@ -1,10 +1,12 @@
-import { actionType } from '../App';
+import { UnknownAction } from '@reduxjs/toolkit';
+import { Dispatch } from 'react';
+import { restart } from '../redux/quizSlice';
 
 type Props = {
   points: number;
   maxPoints: number;
   highscore: number;
-  dispatch: React.Dispatch<actionType>;
+  dispatch: Dispatch<UnknownAction>;
 };
 
 const FinishScreen = ({ maxPoints, points, highscore, dispatch }: Props) => {
@@ -22,10 +24,7 @@ const FinishScreen = ({ maxPoints, points, highscore, dispatch }: Props) => {
         {maxPoints} ({Math.ceil(percentage)}%)
       </p>
       <p className="highscore">Highscore: {highscore} points</p>
-      <button
-        className="btn btn-ui"
-        onClick={() => dispatch({ type: 'restart' })}
-      >
+      <button className="btn btn-ui" onClick={() => dispatch(restart())}>
         Restart quiz
       </button>
     </>

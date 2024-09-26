@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
-import { actionType } from '../App';
+import { Dispatch, useEffect } from 'react';
+import { tick } from '../redux/quizSlice';
+import { UnknownAction } from '@reduxjs/toolkit';
 
 type Props = {
-  dispatch: React.Dispatch<actionType>;
+  dispatch: Dispatch<UnknownAction>;
   secondsRemaining: number;
 };
 
@@ -11,7 +12,7 @@ const Timer = ({ dispatch, secondsRemaining }: Props) => {
   const seconds = secondsRemaining % 60;
   useEffect(() => {
     const id = setInterval(function () {
-      dispatch({ type: 'tick' });
+      dispatch(tick());
     }, 1000);
 
     return () => clearInterval(id);

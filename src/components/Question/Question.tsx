@@ -1,10 +1,10 @@
+import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 import { Question as QuestionType } from '../../common/types';
-import { actionType } from '../../reducers/quizReducer';
 import QuestionOptions from './QuestionOptions';
 
 type Props = {
   question: QuestionType;
-  dispatch: React.Dispatch<actionType>;
+  dispatch: Dispatch<UnknownAction>;
   answer: number | null;
 };
 

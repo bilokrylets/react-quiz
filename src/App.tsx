@@ -1,33 +1,31 @@
-import { useEffect, useReducer } from 'react';
-
+import { useEffect } from 'react';
 import Main from './components/Main';
 import Loader from './components/Loader';
 import Error from './components/Error';
 import StartScreen from './components/StartScreen';
 import Question from './components/Question/Question';
-import { InitialStateType } from './common/types';
 import NextButton from './components/NextButton';
 import Progress from './components/Progress';
 import FinishScreen from './components/FinishScreen';
 import Footer from './components/Footer';
 import Timer from './components/Timer';
-import { QuizReducer } from './reducers/quizReducer';
-
-const initialState: InitialStateType = {
-  questions: [],
-  status: 'loading',
-  index: 0,
-  answer: null,
-  points: 0,
-  highscore: 0,
-  secondsRemaining: 0,
-};
+import { dataReceived, selectQuiz } from './redux/quizSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
-  const [
-    { questions, status, answer, index, points, highscore, secondsRemaining },
-    dispatch,
-  ] = useReducer(QuizReducer, initialState);
+  const {
+    questions,
+    status,
+    answer,
+    index,
+    points,
+    highscore,
+    secondsRemaining,
+  } = useSelector(selectQuiz);
+
+  console.log(useSelector(selectQuiz));
+
+  const dispatch = useDispatch();
 
   const questionsNum = questions.length;
   const maxPoints = questions.reduce((prev, cur) => prev + cur.points, 0);
@@ -35,7 +33,7 @@ function App() {
   useEffect(() => {
     fetch('http://localhost:8000/questions')
       .then((res) => res.json())
-      .then((data) => dispatch({ type: 'dataReceived', payload: data }))
+      .then((data) => dispatch(dataReceived(data)))
       .catch(() => dispatch({ type: 'dataFailed' }));
   }, []);
 
