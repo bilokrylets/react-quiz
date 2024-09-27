@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Timer from './components/Timer';
 import { dataReceived, selectQuiz } from './redux/quizSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from './redux/store';
 
 function App() {
   const {
@@ -25,17 +26,20 @@ function App() {
 
   console.log(useSelector(selectQuiz));
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const questionsNum = questions.length;
-  const maxPoints = questions.reduce((prev, cur) => prev + cur.points, 0);
+  const maxPoints = questions.reduce(
+    (prev: number, cur: { points: number }) => prev + cur.points,
+    0,
+  );
 
   useEffect(() => {
     fetch('http://localhost:8000/questions')
       .then((res) => res.json())
       .then((data) => dispatch(dataReceived(data)))
       .catch(() => dispatch({ type: 'dataFailed' }));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="app">

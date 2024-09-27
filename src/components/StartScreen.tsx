@@ -1,10 +1,9 @@
-import { UnknownAction } from '@reduxjs/toolkit';
-import { Dispatch } from 'react';
 import { start } from '../redux/quizSlice';
+import { AppDispatch } from '../redux/store';
 
 type Props = {
   questionsNumber: number;
-  dispatch: Dispatch<UnknownAction>;
+  dispatch: AppDispatch;
 };
 
 const StartScreen = ({ questionsNumber, dispatch }: Props) => {

@@ -1,11 +1,10 @@
-import { UnknownAction } from '@reduxjs/toolkit';
-import { Dispatch } from 'react';
 import { Question } from '../../common/types';
 import { newAnswer } from '../../redux/quizSlice';
+import { AppDispatch } from '../../redux/store';
 
 type Props = {
   question: Question;
-  dispatch: Dispatch<UnknownAction>;
+  dispatch: AppDispatch;
   answer: number | null;
 };
 

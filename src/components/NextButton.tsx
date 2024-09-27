@@ -1,9 +1,8 @@
-import { UnknownAction } from '@reduxjs/toolkit';
-import { Dispatch } from 'react';
 import { finish, nextQuestion } from '../redux/quizSlice';
+import { AppDispatch } from '../redux/store';
 
 type Props = {
-  dispatch: Dispatch<UnknownAction>;
+  dispatch: AppDispatch;
   answer: number | null;
   index: number;
   numQuestion: number;

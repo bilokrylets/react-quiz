@@ -1,12 +1,11 @@
-import { UnknownAction } from '@reduxjs/toolkit';
-import { Dispatch } from 'react';
 import { restart } from '../redux/quizSlice';
+import { AppDispatch } from '../redux/store';
 
 type Props = {
   points: number;
   maxPoints: number;
   highscore: number;
-  dispatch: Dispatch<UnknownAction>;
+  dispatch: AppDispatch;
 };
 
 const FinishScreen = ({ maxPoints, points, highscore, dispatch }: Props) => {

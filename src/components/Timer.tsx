@@ -1,9 +1,9 @@
-import { Dispatch, useEffect } from 'react';
+import { useEffect } from 'react';
 import { tick } from '../redux/quizSlice';
-import { UnknownAction } from '@reduxjs/toolkit';
+import { AppDispatch } from '../redux/store';
 
 type Props = {
-  dispatch: Dispatch<UnknownAction>;
+  dispatch: AppDispatch;
   secondsRemaining: number;
 };
 
