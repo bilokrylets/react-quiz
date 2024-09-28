@@ -1,15 +1,17 @@
 import { useEffect } from 'react';
 import { tick } from '../redux/quizSlice';
 import { AppDispatch } from '../redux/store';
+import { useDispatch } from 'react-redux';
 
 type Props = {
-  dispatch: AppDispatch;
   secondsRemaining: number;
 };
 
-const Timer = ({ dispatch, secondsRemaining }: Props) => {
+const Timer = ({ secondsRemaining }: Props) => {
+  const dispatch: AppDispatch = useDispatch();
   const mins = Math.floor(secondsRemaining / 60);
   const seconds = secondsRemaining % 60;
+
   useEffect(() => {
     const id = setInterval(function () {
       dispatch(tick());

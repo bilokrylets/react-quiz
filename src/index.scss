@@ -89,6 +89,18 @@ h4 {
   align-items: center;
 }
 
+.start-highscore {
+  background-color: var(--color-theme);
+  color: var(--color-light);
+  border-radius: 100px;
+  text-align: center;
+  margin: 5rem;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1.6rem;
+}
+
 .progress {
   margin-bottom: 4rem;
   display: grid;

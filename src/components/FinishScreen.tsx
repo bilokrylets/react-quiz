@@ -19,7 +19,7 @@ const FinishScreen = ({ maxPoints, points, highscore, dispatch }: Props) => {
   return (
     <>
       <p className="result">
-        <span>{emoji}</span> You dcored <strong>{points}</strong> out of{' '}
+        <span>{emoji}</span> You scored <strong>{points}</strong> out of{' '}
         {maxPoints} ({Math.ceil(percentage)}%)
       </p>
       <p className="highscore">Highscore: {highscore} points</p>

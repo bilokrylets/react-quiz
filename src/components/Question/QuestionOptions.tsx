@@ -1,15 +1,17 @@
+import { useDispatch } from 'react-redux';
 import { Question } from '../../common/types';
 import { newAnswer } from '../../redux/quizSlice';
 import { AppDispatch } from '../../redux/store';
 
 type Props = {
   question: Question;
-  dispatch: AppDispatch;
   answer: number | null;
 };
 
-const QuestionOptions = ({ question, answer, dispatch }: Props) => {
+const QuestionOptions = ({ question, answer }: Props) => {
+  const dispatch: AppDispatch = useDispatch();
   const hasAnswered = answer !== null;
+
   return (
     <div className="options">
       {question.options.map((option, index) => (

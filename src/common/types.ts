@@ -6,7 +6,7 @@ export type Question = {
 };
 
 export type InitialStateType = {
-  questions: Question[] | [];
+  questions: Question[];
   status: 'loading' | 'error' | 'ready' | 'active' | 'finish';
   index: number;
   answer: null | number;

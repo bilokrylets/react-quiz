@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { InitialStateType } from '../common/types';
+import { RootState } from './store';
 
 const initialState: InitialStateType = {
   questions: [],
@@ -7,7 +8,7 @@ const initialState: InitialStateType = {
   index: 0,
   answer: null,
   points: 0,
-  highscore: 0,
+  highscore: Number(localStorage.getItem('highscore')) || 0,
   secondsRemaining: 0,
 };
 
@@ -29,11 +30,13 @@ export const quizSlice = createSlice({
     newAnswer: (state, action) => {
       const question = state.questions.at(state.index);
 
-      state.answer = action.payload;
-      state.points =
-        action.payload === question.correctOption
-          ? state.points + question.points
-          : state.points;
+      if (question) {
+        state.answer = action.payload;
+        state.points =
+          action.payload === question.correctOption
+            ? state.points + question.points
+            : state.points;
+      }
     },
     nextQuestion: (state) => {
       state.index += 1;
@@ -43,6 +46,7 @@ export const quizSlice = createSlice({
       state.status = 'finish';
       state.highscore =
         state.points > state.highscore ? state.points : state.highscore;
+      localStorage.setItem('highscore', String(state.highscore));
     },
     restart: (state) => {
       (state.status = 'ready'),
@@ -68,6 +72,6 @@ export const {
   tick,
 } = quizSlice.actions;
 
-export const selectQuiz = (state) => state.quiz;
+export const selectQuiz = (state: RootState) => state.quiz;
 
 export default quizSlice.reducer;

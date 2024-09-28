@@ -1,14 +1,16 @@
+import { useDispatch } from 'react-redux';
 import { finish, nextQuestion } from '../redux/quizSlice';
 import { AppDispatch } from '../redux/store';
 
 type Props = {
-  dispatch: AppDispatch;
   answer: number | null;
   index: number;
   numQuestion: number;
 };
 
-const NextButton = ({ dispatch, answer, index, numQuestion }: Props) => {
+const NextButton = ({ answer, index, numQuestion }: Props) => {
+  const dispatch: AppDispatch = useDispatch();
+
   if (answer === null) return null;
   if (index < numQuestion - 1)
     return (
