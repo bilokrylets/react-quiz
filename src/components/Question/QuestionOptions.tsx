@@ -1,16 +1,13 @@
-import { useDispatch } from 'react-redux';
-import { Question } from '../../common/types';
-import { newAnswer } from '../../redux/quizSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { newAnswer, selectQuiz } from '../../redux/quizSlice';
 import { AppDispatch } from '../../redux/store';
 
-type Props = {
-  question: Question;
-  answer: number | null;
-};
-
-const QuestionOptions = ({ question, answer }: Props) => {
+const QuestionOptions = () => {
+  const { questions, answer, index } = useSelector(selectQuiz);
   const dispatch: AppDispatch = useDispatch();
+
   const hasAnswered = answer !== null;
+  const question = questions[index];
 
   return (
     <div className="options">

@@ -1,14 +1,15 @@
-import { restart } from '../redux/quizSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { restart, selectQuiz } from '../redux/quizSlice';
 import { AppDispatch } from '../redux/store';
 
-type Props = {
-  points: number;
-  maxPoints: number;
-  highscore: number;
-  dispatch: AppDispatch;
-};
+const FinishScreen = () => {
+  const { questions, points, highscore } = useSelector(selectQuiz);
+  const dispatch: AppDispatch = useDispatch();
 
-const FinishScreen = ({ maxPoints, points, highscore, dispatch }: Props) => {
+  const maxPoints = questions.reduce(
+    (prev: number, cur: { points: number }) => prev + cur.points,
+    0,
+  );
   const percentage = (points / maxPoints) * 100;
 
   let emoji;

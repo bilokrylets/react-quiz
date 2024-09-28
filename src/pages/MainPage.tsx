@@ -15,23 +15,9 @@ import Error from '../components/Error';
 import { SERVER_URL } from '../constants';
 
 function MainPage() {
-  const {
-    questions,
-    status,
-    answer,
-    index,
-    points,
-    highscore,
-    secondsRemaining,
-  } = useSelector(selectQuiz);
+  const { status } = useSelector(selectQuiz);
 
   const dispatch: AppDispatch = useDispatch();
-
-  const questionsNum = questions.length;
-  const maxPoints = questions.reduce(
-    (prev: number, cur: { points: number }) => prev + cur.points,
-    0,
-  );
 
   useEffect(() => {
     fetch(`${SERVER_URL}/questions`)
@@ -44,35 +30,18 @@ function MainPage() {
     <Main>
       {status === 'loading' && <Loader />}
       {status === 'error' && <Error />}
-      {status === 'ready' && <StartScreen questionsNumber={questionsNum} />}
+      {status === 'ready' && <StartScreen />}
       {status === 'active' && (
         <>
-          <Progress
-            index={index}
-            numQuestions={questionsNum}
-            points={points}
-            maxPoints={maxPoints}
-            answer={answer}
-          />
-          <Question question={questions[index]} answer={answer} />
+          <Progress />
+          <Question />
           <Footer>
-            <Timer secondsRemaining={secondsRemaining} />
-            <NextButton
-              answer={answer}
-              numQuestion={questionsNum}
-              index={index}
-            />
+            <Timer />
+            <NextButton />
           </Footer>
         </>
       )}
-      {status === 'finish' && (
-        <FinishScreen
-          points={points}
-          maxPoints={maxPoints}
-          highscore={highscore}
-          dispatch={dispatch}
-        />
-      )}
+      {status === 'finish' && <FinishScreen />}
     </Main>
   );
 }

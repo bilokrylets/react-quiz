@@ -1,18 +1,16 @@
-import { Question as QuestionType } from '../../common/types';
+import { useSelector } from 'react-redux';
+import { selectQuiz } from '../../redux/quizSlice';
 import QuestionOptions from './QuestionOptions';
 
-type Props = {
-  question: QuestionType;
-  answer: number | null;
-};
-
-const Question = ({ question, answer }: Props) => {
+const Question = () => {
+  const { questions, index } = useSelector(selectQuiz);
+  const question = questions[index];
   return (
     <div>
       <h4>{question.question}</h4>
 
       <div className="options">
-        <QuestionOptions question={question} answer={answer} />
+        <QuestionOptions />
       </div>
     </div>
   );

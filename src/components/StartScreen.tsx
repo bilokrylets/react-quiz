@@ -2,13 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectQuiz, start } from '../redux/quizSlice';
 import { AppDispatch } from '../redux/store';
 
-type Props = {
-  questionsNumber: number;
-};
-
-const StartScreen = ({ questionsNumber }: Props) => {
-  const { highscore } = useSelector(selectQuiz);
+const StartScreen = () => {
+  const { questions, highscore } = useSelector(selectQuiz);
   const dispatch: AppDispatch = useDispatch();
+
+  const questionsNumber = questions.length;
 
   return (
     <div className="start">

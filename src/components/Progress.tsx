@@ -1,17 +1,15 @@
-type Props = {
-  index: number;
-  numQuestions: number;
-  points: number;
-  maxPoints: number;
-  answer: number | null;
-};
-const Progress = ({
-  index,
-  numQuestions,
-  points,
-  maxPoints,
-  answer,
-}: Props) => {
+import { useSelector } from 'react-redux';
+import { selectQuiz } from '../redux/quizSlice';
+
+const Progress = () => {
+  const { questions, answer, index, points } = useSelector(selectQuiz);
+
+  const numQuestions = questions.length;
+  const maxPoints = questions.reduce(
+    (prev: number, cur: { points: number }) => prev + cur.points,
+    0,
+  );
+
   return (
     <header className="progress">
       <progress max={numQuestions} value={index + Number(answer !== null)} />
