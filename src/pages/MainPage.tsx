@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import FinishScreen from '../components/FinishScreen';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
-import Main from '../components/Main';
 import NextButton from '../components/NextButton';
 import Progress from '../components/Progress';
 import Question from '../components/Question/Question';
@@ -16,7 +15,6 @@ import { SERVER_URL } from '../constants';
 
 function MainPage() {
   const { status } = useSelector(selectQuiz);
-
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +25,7 @@ function MainPage() {
   }, [dispatch]);
 
   return (
-    <Main>
+    <main className="main">
       {status === 'loading' && <Loader />}
       {status === 'error' && <Error />}
       {status === 'ready' && <StartScreen />}
@@ -42,7 +40,7 @@ function MainPage() {
         </>
       )}
       {status === 'finish' && <FinishScreen />}
-    </Main>
+    </main>
   );
 }
 export default MainPage;
