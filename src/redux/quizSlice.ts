@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { InitialStateType } from './types';
 import { RootState } from './store';
+import { SECS_PER_QUESTION } from '../constants';
 
 const initialState: InitialStateType = {
   questions: [],
@@ -25,7 +26,7 @@ export const quizSlice = createSlice({
     },
     start: (state) => {
       state.status = 'active';
-      state.secondsRemaining = state.questions.length * 30;
+      state.secondsRemaining = state.questions.length * SECS_PER_QUESTION;
     },
     newAnswer: (state, action) => {
       const question = state.questions.at(state.index);

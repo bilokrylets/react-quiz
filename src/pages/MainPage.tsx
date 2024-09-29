@@ -22,7 +22,7 @@ function MainPage() {
       .then((res) => res.json())
       .then((data) => dispatch(dataReceived(data)))
       .catch(() => dispatch({ type: 'dataFailed' }));
-  }, [dispatch]);
+  });
 
   return (
     <main className="main">
