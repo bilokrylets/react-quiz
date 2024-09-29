@@ -27,7 +27,6 @@ To get a local copy of this project up and running, follow these steps:
 
    ```bash
    git clone https://github.com/bilokrylets/react-quiz
-   Navigate to the project directory:
    ```
 
 ## Usage
