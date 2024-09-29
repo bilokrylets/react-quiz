@@ -1,4 +1,4 @@
-# Refactor
+# React Quiz
 
 This project is a quiz application built with **React**, **TypeScript**, and **Redux Toolkit**. It allows users to answer questions in a quiz format, with state management handled by Redux. The project demonstrates the use of TypeScript for type safety and Redux Toolkit for efficient state management.
 
