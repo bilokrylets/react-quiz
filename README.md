@@ -1,4 +1,4 @@
-# Quiz Application
+# Refactor
 
 This project is a quiz application built with **React**, **TypeScript**, and **Redux Toolkit**. It allows users to answer questions in a quiz format, with state management handled by Redux. The project demonstrates the use of TypeScript for type safety and Redux Toolkit for efficient state management.
 
@@ -17,7 +17,6 @@ This project is a quiz application built with **React**, **TypeScript**, and **R
 - [TypeScript](https://www.typescriptlang.org/) - Typed superset of JavaScript that compiles to plain JavaScript.
 - [Redux Toolkit](https://redux-toolkit.js.org/) - Official, opinionated, batteries-included toolset for efficient Redux development.
 - [React-Redux](https://react-redux.js.org/) - Official React bindings for Redux.
-- [Axios](https://axios-http.com/) - Promise-based HTTP client for making API calls.
 - [SCSS](https://sass-lang.com/) - A preprocessor scripting language that is interpreted or compiled into CSS.
 
 ## Installation
@@ -31,15 +30,8 @@ To get a local copy of this project up and running, follow these steps:
    Navigate to the project directory:
    ```
 
-bash
-Копировать код
-cd quiz-app
-Install dependencies:
+## Usage
 
-bash
-Копировать код
-npm install
-Usage
 **To run the application locally:**
 
 Start local json server with questions:
